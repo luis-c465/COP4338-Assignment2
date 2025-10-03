@@ -22,10 +22,10 @@
 */
 
 int isValidGrade(float grade) {
-    // TODO: Implement grade validation logic
-    // 🕵️‍♀️HINT: Use MIN_GRADE and MAX_GRADE constants
-    
-    return OPERATION_INVALID_INPUT; // Replace with your implementation
+    if (grade < MIN_GRADE || grade > MAX_GRADE)
+        return OPERATION_INVALID_INPUT;
+
+    return OPERATION_SUCCESS;
 }
 
 /* ============================================================================
@@ -44,10 +44,14 @@ int isValidGrade(float grade) {
  */
 
 char getLetterGrade(float average) {
-    // TODO: Implement letter grade conversion
-    // 🕵️‍♀️HINT: Use if-else ladder with the grading scale above
-    
-    return 'N'; // Replace with your implementation
+    if (average < 0) return 'N';
+
+    if (average >= 90) return 'A';
+    if (average >= 80) return 'B';
+    if (average >= 70) return 'C';
+    if (average >= 60) return 'D';
+    return 'F';
+
 }
 
 /* ============================================================================
@@ -58,8 +62,10 @@ char getLetterGrade(float average) {
  */
 
 int findStudentByID(int id) {
-    // TODO: Implement linear search algorithm
-    // 🕵️‍♀️HINT: Use for loop and comparison  
+    for(int i=0; i<studentCount; ++i){
+        if(studentIDs[i] == id) return i;
+    }
+    return OPERATION_NOT_FOUND;
 }
 
 /* ============================================================================
@@ -71,8 +77,29 @@ int findStudentByID(int id) {
  */
 
 float calculateStudentAverage(int studentIndex) {
-    // TODO: Implement average calculation
-    // 🕵️‍♀️HINT: Count valid grades (>= 0), sum them, return average
+    if (studentIndex < 0 || studentIndex >= studentCount) return -1;
+    int numValidGrades = 0;
+    float gradeSum = 0;
+    if (isValidGrade(quizGrades[studentIndex])) {
+        numValidGrades++;
+        gradeSum += quizGrades[studentIndex];
+    }
+    if (isValidGrade(assignmentGrades[studentIndex])) {
+        numValidGrades++;
+        gradeSum += assignmentGrades[studentIndex];
+    }
+    if (isValidGrade(midtermGrades[studentIndex])) {
+        numValidGrades++;
+        gradeSum += midtermGrades[studentIndex];
+    }
+    if (isValidGrade(finalGrades[studentIndex])) {
+        numValidGrades++;
+        gradeSum += finalGrades[studentIndex];
+    }
+
+    if(!numValidGrades) return -1;
+    return gradeSum / numValidGrades;
+
 }
 
 /* ============================================================================
@@ -91,8 +118,19 @@ float calculateStudentAverage(int studentIndex) {
  */
 
 int addStudent(int studentID) {
-    // TODO: Implement student addition with full validation 
-    // 🕵️‍♀️HINT: Validate ID, check duplicates, check capacity, add to arrays 
+    if (studentCount >= MAX_STUDENTS) return OPERATION_CAPACITY_ERROR;
+    if (studentID < 0 || studentID > MAX_STUDENT_ID) return OPERATION_INVALID_INPUT;
+    int studentWithID = findStudentByID(studentID);
+    if (studentWithID != OPERATION_NOT_FOUND) return OPERATION_DUPLICATE_ERROR;
+
+    studentIDs[studentCount] = studentID;
+    quizGrades[studentCount] = GRADE_NOT_ENTERED;
+    assignmentGrades[studentCount] = GRADE_NOT_ENTERED;
+    midtermGrades[studentCount] = GRADE_NOT_ENTERED;
+    finalGrades[studentCount] = GRADE_NOT_ENTERED;
+
+    studentCount++;
+    return OPERATION_SUCCESS;
 }
 
 /* ============================================================================
@@ -112,9 +150,26 @@ int addStudent(int studentID) {
  */
 
 int enterGrade(int studentID, int assessmentType, float grade) {
-    // TODO: Implement grade entry with validation
-    // 🕵️‍♀️HINT: Find student, validate inputs, update appropriate grade array
-    // 🕵️‍♀️HINT: Use switch statement for assessmentType (1=quiz, 2=assignment, 3=midterm, 4=final)
+    int studentWithID = findStudentByID(studentID);
+    if (studentWithID == OPERATION_NOT_FOUND) return OPERATION_NOT_FOUND;
+    if(!isValidGrade(grade)) return OPERATION_INVALID_INPUT;
+    switch(assessmentType) {
+        case 1:
+           quizGrades[studentWithID] = grade;
+           break;
+        case 2:
+           assignmentGrades[studentWithID] = grade;
+           break;
+        case 3:
+           midtermGrades[studentWithID] = grade;
+           break;
+        case 4:
+           finalGrades[studentWithID] = grade;
+           break;
+        default:
+           return OPERATION_INVALID_INPUT;
+    }
+    return OPERATION_SUCCESS;
 }
 
 /* ============================================================================
