@@ -158,13 +158,13 @@ int enterGrade(int studentID, int assessmentType, float grade) {
            quizGrades[studentWithID] = grade;
            break;
         case 2:
-           assessmentGrades[studentWithID] = grade;
+           assignmentGrades[studentWithID] = grade;
            break;
         case 3:
            midtermGrades[studentWithID] = grade;
            break;
         case 4:
-           finalGrades[studentWithId] = grade;
+           finalGrades[studentWithID] = grade;
            break;
         default:
            return OPERATION_INVALID_INPUT;
