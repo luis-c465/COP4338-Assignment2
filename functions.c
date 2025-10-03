@@ -49,8 +49,14 @@ int isValidGrade(float grade) {
 char getLetterGrade(float average) {
     // TODO: Implement letter grade conversion
     // 🕵️‍♀️HINT: Use if-else ladder with the grading scale above
-    
-    return 'N'; // Replace with your implementation
+    if (average < 0) return 'N';
+
+    if (average >= 90) return 'A';
+    if (average >= 80) return 'B';
+    if (average >= 70) return 'C';
+    if (average >= 60) return 'D';
+    return 'F';
+
 }
 
 /* ============================================================================
