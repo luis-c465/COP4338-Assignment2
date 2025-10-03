@@ -69,6 +69,11 @@ char getLetterGrade(float average) {
 int findStudentByID(int id) {
     // TODO: Implement linear search algorithm
     // 🕵️‍♀️HINT: Use for loop and comparison  
+
+    for(int i=0; i<MAX_STUDENTS; ++i){
+        if(studentIDs[i] == id) return i;
+    }
+    return OPERATION_NOT_FOUND;
 }
 
 /* ============================================================================
