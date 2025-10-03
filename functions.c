@@ -150,9 +150,26 @@ int addStudent(int studentID) {
  */
 
 int enterGrade(int studentID, int assessmentType, float grade) {
-    // TODO: Implement grade entry with validation
-    // 🕵️‍♀️HINT: Find student, validate inputs, update appropriate grade array
-    // 🕵️‍♀️HINT: Use switch statement for assessmentType (1=quiz, 2=assignment, 3=midterm, 4=final)
+    int studentWithID = findStudentByID(studentID);
+    if (studentWithID == OPERATION_NOT_FOUND) return OPERATION_NOT_FOUND;
+    if(!isValidGrade(grade)) return OPERATION_INVALID_INPUT;
+    switch(assessmentType) {
+        case 1:
+           quizGrades[studentWithID] = grade;
+           break;
+        case 2:
+           assessmentGrades[studentWithID] = grade;
+           break;
+        case 3:
+           midtermGrades[studentWithID] = grade;
+           break;
+        case 4:
+           finalGrades[studentWithId] = grade;
+           break;
+        default:
+           return OPERATION_INVALID_INPUT;
+    }
+    return OPERATION_SUCCESS;
 }
 
 /* ============================================================================
