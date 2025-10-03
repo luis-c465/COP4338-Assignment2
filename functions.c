@@ -22,9 +22,6 @@
 */
 
 int isValidGrade(float grade) {
-    // TODO: Implement grade validation logic
-    // 🕵️‍♀️HINT: Use MIN_GRADE and MAX_GRADE constants
-    
     if (grade < MIN_GRADE || grade > MAX_GRADE)
         return OPERATION_INVALID_INPUT;
 
@@ -47,8 +44,6 @@ int isValidGrade(float grade) {
  */
 
 char getLetterGrade(float average) {
-    // TODO: Implement letter grade conversion
-    // 🕵️‍♀️HINT: Use if-else ladder with the grading scale above
     if (average < 0) return 'N';
 
     if (average >= 90) return 'A';
@@ -67,9 +62,6 @@ char getLetterGrade(float average) {
  */
 
 int findStudentByID(int id) {
-    // TODO: Implement linear search algorithm
-    // 🕵️‍♀️HINT: Use for loop and comparison  
-
     for(int i=0; i<MAX_STUDENTS; ++i){
         if(studentIDs[i] == id) return i;
     }
