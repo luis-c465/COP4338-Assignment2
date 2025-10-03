@@ -118,8 +118,19 @@ float calculateStudentAverage(int studentIndex) {
  */
 
 int addStudent(int studentID) {
-    // TODO: Implement student addition with full validation 
-    // 🕵️‍♀️HINT: Validate ID, check duplicates, check capacity, add to arrays 
+    if (studentCount >= MAX_STUDENTS) return OPERATION_CAPACITY_ERROR;
+    if (studentID < 0 || studentID > MAX_STUDENT_ID) return OPERATION_INVALID_INPUT;
+    int studentWithID = findStudentByID(studentID);
+    if (studentWithID != OPERATION_NOT_FOUND) return OPERATION_DUPLICATE_ERROR;
+
+    studentIDs[studentCount] = studentID;
+    quizGrades[studentCount] = GRADE_NOT_ENTERED;
+    assignmentGrades[studentCount] = GRADE_NOT_ENTERED;
+    midtermGrades[studentCount] = GRADE_NOT_ENTERED;
+    finalGrades[studentCount] = GRADE_NOT_ENTERED;
+
+    studentCount++;
+    return OPERATION_SUCCESS;
 }
 
 /* ============================================================================
