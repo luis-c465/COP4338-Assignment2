@@ -62,7 +62,7 @@ char getLetterGrade(float average) {
  */
 
 int findStudentByID(int id) {
-    for(int i=0; i<MAX_STUDENTS; ++i){
+    for(int i=0; i<studentCount; ++i){
         if(studentIDs[i] == id) return i;
     }
     return OPERATION_NOT_FOUND;
@@ -77,6 +77,7 @@ int findStudentByID(int id) {
  */
 
 float calculateStudentAverage(int studentIndex) {
+    if (studentIndex < 0 || studentIndex >= studentCount) return -1;
     int numValidGrades = 0;
     float gradeSum = 0;
     if (isValidGrade(quizGrades[studentIndex])) {
