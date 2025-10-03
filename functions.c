@@ -25,7 +25,10 @@ int isValidGrade(float grade) {
     // TODO: Implement grade validation logic
     // 🕵️‍♀️HINT: Use MIN_GRADE and MAX_GRADE constants
     
-    return OPERATION_INVALID_INPUT; // Replace with your implementation
+    if (grade < MIN_GRADE || grade > MAX_GRADE)
+        return OPERATION_INVALID_INPUT;
+
+    return OPERATION_SUCCESS;
 }
 
 /* ============================================================================
