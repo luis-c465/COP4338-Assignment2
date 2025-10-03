@@ -77,8 +77,28 @@ int findStudentByID(int id) {
  */
 
 float calculateStudentAverage(int studentIndex) {
-    // TODO: Implement average calculation
-    // 🕵️‍♀️HINT: Count valid grades (>= 0), sum them, return average
+    int numValidGrades = 0;
+    float gradeSum = 0;
+    if (isValidGrade(quizGrades[studentIndex])) {
+        numValidGrades++;
+        gradeSum += quizGrades[studentIndex];
+    }
+    if (isValidGrade(assignmentGrades[studentIndex])) {
+        numValidGrades++;
+        gradeSum += assignmentGrades[studentIndex];
+    }
+    if (isValidGrade(midtermGrades[studentIndex])) {
+        numValidGrades++;
+        gradeSum += midtermGrades[studentIndex];
+    }
+    if (isValidGrade(finalGrades[studentIndex])) {
+        numValidGrades++;
+        gradeSum += finalGrades[studentIndex];
+    }
+
+    if(!numValidGrades) return -1;
+    return gradeSum / numValidGrades;
+
 }
 
 /* ============================================================================
