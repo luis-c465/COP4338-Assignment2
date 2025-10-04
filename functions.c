@@ -155,16 +155,32 @@ int enterGrade(int studentID, int assessmentType, float grade) {
     if(!isValidGrade(grade)) return OPERATION_INVALID_INPUT;
     switch(assessmentType) {
         case ASSESSMENT_QUIZ:
-           quizGrades[studentWithID] = grade;
+           quizGrades[studentWithID] = abs(quizGrades[studentWithID] - GRADE_NOT_ENTERED) < 1e-5 ? grade : (quizGrades[studentWithID] + grade);
+           assessmentStats[ASSESSMENT_QUIZ]++;
+           assessmentStats[ASSESSMENT_QUIZ-1] = quizGrades[studentWithID] / assessmentStats[ASSESSMENT_QUIZ];
+           assessmentStats[ASSESSMENT_QUIZ+1] = grade < assessmentStats[ASSESSMENT_QUIZ+1] ? grade : assessmentStats[ASSESSMENT_QUIZ+1];
+           assessmentStats[ASSESSMENT_QUIZ+2] = grade > assessmentStats[ASSESSMENT_QUIZ+2] ? grade : assessmentStats[ASSESSMENT_QUIZ+2];
            break;
         case ASSESSMENT_ASSIGNMENT:
-           assignmentGrades[studentWithID] = grade;
+           assignmentGrades[studentWithID] = abs(assignmentGrades[studentWithID] - GRADE_NOT_ENTERED) < 1e-5 ? grade : (assignmentGrades[studentWithID] + grade);
+           assessmentStats[ASSESSMENT_ASSIGNMENT]++;
+           assessmentStats[ASSESSMENT_ASSIGNMENT-1] = assignmentGrades[studentWithID] / assessmentStats[ASSESSMENT_ASSIGNMENT];
+           assessmentStats[ASSESSMENT_ASSIGNMENT+1] = grade < assessmentStats[ASSESSMENT_ASSIGNMENT + 1] ? grade : assessmentStats[ASSESSMENT_ASSIGNMENT + 1];
+           assessmentStats[ASSESSMENT_ASSIGNMENT+2] = grade > assessmentStats[ASSESSMENT_ASSIGNMENT + 2] ? grade : assessmentStats[ASSESSMENT_ASSIGNMENT + 2];
            break;
         case ASSESSMENT_MIDTERM:
-           midtermGrades[studentWithID] = grade;
+           midtermGrades[studentWithID] = abs(midtermGrades[studentWithID] - GRADE_NOT_ENTERED) < 1e-5 ? grade : (midtermGrades[studentWithID] + grade);
+           assessmentStats[ASSESSMENT_MIDTERM]++;
+           assessmentStats[ASSESSMENT_MIDTERM-1] = midtermGrades[studentWithID] / assessmentStats[ASSESSMENT_MIDTERM];
+           assessmentStats[ASSESSMENT_MIDTERM+1] = grade < assessmentStats[ASSESSMENT_MIDTERM + 1] ? grade : assessmentStats[ASSESSMENT_MIDTERM + 1];
+           assessmentStats[ASSESSMENT_MIDTERM+2] = grade > assessmentStats[ASSESSMENT_MIDTERM + 2] ? grade : assessmentStats[ASSESSMENT_MIDTERM + 2];
            break;
         case ASSESSMENT_FINAL:
-           finalGrades[studentWithID] = grade;
+           finalGrades[studentWithID] = abs(finalGrades[studentWithID] - GRADE_NOT_ENTERED) < 1e-5 ? grade : (finalGrades[studentWithID] + grade);
+           assessmentStats[ASSESSMENT_FINAL]++;
+           assessmentStats[ASSESSMENT_FINAL-1] = finalGrades[studentWithID] / assessmentStats[ASSESSMENT_FINAL];
+           assessmentStats[ASSESSMENT_FINAL+1] = grade < assessmentStats[ASSESSMENT_FINAL + 1] ? grade : assessmentStats[ASSESSMENT_FINAL + 1];
+           assessmentStats[ASSESSMENT_FINAL+2] = grade > assessmentStats[ASSESSMENT_FINAL + 2] ? grade : assessmentStats[ASSESSMENT_FINAL + 2];
            break;
         default:
            return OPERATION_INVALID_INPUT;
