@@ -169,6 +169,26 @@ int enterGrade(int studentID, int assessmentType, float grade) {
         default:
            return OPERATION_INVALID_INPUT;
     }
+    char letterGrade = getLetterGrade(grade);
+    switch(letterGrade) {
+        case 'A':
+            gradeDistributionCounts[0]++;
+            break;
+        case 'B':
+            gradeDistributionCounts[1]++;
+            break;
+        case 'C':
+            gradeDistributionCounts[2]++;
+            break;
+        case 'D':
+            gradeDistributionCounts[3]++;
+            break;
+        case 'F':
+            gradeDistributionCounts[4]++;
+            break;
+        default:
+            break;
+    }
     return OPERATION_SUCCESS;
 }
 
