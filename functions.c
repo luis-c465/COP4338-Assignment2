@@ -154,16 +154,16 @@ int enterGrade(int studentID, int assessmentType, float grade) {
     if (studentWithID == OPERATION_NOT_FOUND) return OPERATION_NOT_FOUND;
     if(!isValidGrade(grade)) return OPERATION_INVALID_INPUT;
     switch(assessmentType) {
-        case 1:
+        case ASSESSMENT_QUIZ:
            quizGrades[studentWithID] = grade;
            break;
-        case 2:
+        case ASSESSMENT_ASSIGNMENT:
            assignmentGrades[studentWithID] = grade;
            break;
-        case 3:
+        case ASSESSMENT_MIDTERM:
            midtermGrades[studentWithID] = grade;
            break;
-        case 4:
+        case ASSESSMENT_FINAL:
            finalGrades[studentWithID] = grade;
            break;
         default:
