@@ -205,6 +205,7 @@ int enterGrade(int studentID, int assessmentType, float grade) {
         default:
             break;
     }
+    totalGradesEntered++;
     return OPERATION_SUCCESS;
 }
 
