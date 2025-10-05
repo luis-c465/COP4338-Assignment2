@@ -270,7 +270,7 @@ int calculateStatistics(void) {
         float min = MAX_GRADE;
         float max = MIN_GRADE;
 
-        for (int j = 0; j < MAX_STUDENTS; j++) {
+        for (int j = 0; j < studentCount; j++) {
             if (arr[j] == GRADE_NOT_ENTERED) continue;
 
             count++;
