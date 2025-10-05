@@ -102,6 +102,8 @@ float calculateStudentAverage(int studentIndex) {
         gradeSum += finalGrades[studentIndex];
     }
 
+    if (numValidGrades == 0) return -1.0f;
+
     return gradeSum / numValidGrades;
 }
 
@@ -288,14 +290,18 @@ int calculateStatistics(void) {
 
     // TODO: STUDENTS MUST IMPLEMENT GRADE DISTRIBUTION CALCULATION:
     // Step 4: Calculate grade distribution
-    for (int id = 0; id < MAX_STUDENTS; id++) {
+    for (int id = 0; id < studentCount-1; id++) {
         float avg = calculateStudentAverage(id);
         if (avg == -1) continue;
 
         char grade = getLetterGrade(avg);
         if (grade == 'N') continue;
 
-        gradeDistributionCounts[(int)grade - 'A']++;
+        if      (grade == 'A') gradeDistributionCounts[0]++;
+        else if (grade == 'B') gradeDistributionCounts[1]++;
+        else if (grade == 'C') gradeDistributionCounts[2]++;
+        else if (grade == 'D') gradeDistributionCounts[3]++;
+        else if (grade == 'F') gradeDistributionCounts[4]++;
     }
 
     return OPERATION_SUCCESS; // Only return this after implementing all calculations above
