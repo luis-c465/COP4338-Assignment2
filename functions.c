@@ -290,7 +290,7 @@ int calculateStatistics(void) {
 
     // TODO: STUDENTS MUST IMPLEMENT GRADE DISTRIBUTION CALCULATION:
     // Step 4: Calculate grade distribution
-    for (int id = 0; id < studentCount-1; id++) {
+    for (int id = 0; id < studentCount; id++) {
         float avg = calculateStudentAverage(id);
         if (avg == -1) continue;
 
