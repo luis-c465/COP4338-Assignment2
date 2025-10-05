@@ -255,9 +255,7 @@ int calculateStatistics(void) {
         return OPERATION_NOT_FOUND;
     }
 
-    // TODO: STUDENTS MUST IMPLEMENT THE ASSESSMENT STATISTICS CALCULATIONS
     // Step 3: Calculate statistics for each assessment type
-    // this is by far the most obtuse and unclear i have ever written
     for (int i = 0; i < 4; i++) {
         float *arr;
         if (i == 0)      arr = quizGrades;
@@ -288,7 +286,6 @@ int calculateStatistics(void) {
     }
 
 
-    // TODO: STUDENTS MUST IMPLEMENT GRADE DISTRIBUTION CALCULATION:
     // Step 4: Calculate grade distribution
     for (int id = 0; id < studentCount; id++) {
         float avg = calculateStudentAverage(id);
