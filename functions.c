@@ -157,7 +157,7 @@ int addStudent(int studentID) {
 int enterGrade(int studentID, int assessmentType, float grade) {
     int studentWithID = findStudentByID(studentID);
     if (studentWithID == OPERATION_NOT_FOUND) return OPERATION_NOT_FOUND;
-    if(!isValidGrade(grade)) return OPERATION_INVALID_INPUT;
+    if(isValidGrade(grade) == OPERATION_INVALID_INPUT) return OPERATION_INVALID_INPUT;
     switch(assessmentType) {
         case 1:
            quizGrades[studentWithID] = grade;
