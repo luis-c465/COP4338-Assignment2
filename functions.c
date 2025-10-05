@@ -124,7 +124,7 @@ float calculateStudentAverage(int studentIndex) {
 
 int addStudent(int studentID) {
     if (studentCount >= MAX_STUDENTS) return OPERATION_CAPACITY_ERROR;
-    if (studentID < 0 || studentID > MAX_STUDENT_ID) return OPERATION_INVALID_INPUT;
+    if (studentID <= 0 || studentID > MAX_STUDENT_ID) return OPERATION_INVALID_INPUT;
     int studentWithID = findStudentByID(studentID);
     if (studentWithID != OPERATION_NOT_FOUND) return OPERATION_DUPLICATE_ERROR;
 
@@ -157,18 +157,18 @@ int addStudent(int studentID) {
 int enterGrade(int studentID, int assessmentType, float grade) {
     int studentWithID = findStudentByID(studentID);
     if (studentWithID == OPERATION_NOT_FOUND) return OPERATION_NOT_FOUND;
-    if(!isValidGrade(grade)) return OPERATION_INVALID_INPUT;
+    if(isValidGrade(grade) == OPERATION_INVALID_INPUT) return OPERATION_INVALID_INPUT;
     switch(assessmentType) {
-        case 1:
+        case ASSESSMENT_QUIZ:
            quizGrades[studentWithID] = grade;
            break;
-        case 2:
+        case ASSESSMENT_ASSIGNMENT:
            assignmentGrades[studentWithID] = grade;
            break;
-        case 3:
+        case ASSESSMENT_MIDTERM:
            midtermGrades[studentWithID] = grade;
            break;
-        case 4:
+        case ASSESSMENT_FINAL:
            finalGrades[studentWithID] = grade;
            break;
         default:
