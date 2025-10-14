@@ -8,4 +8,4 @@ make
 
 # Run
 
-./run
+./grade_system
